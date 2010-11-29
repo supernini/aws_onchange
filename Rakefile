@@ -1,5 +1,10 @@
 require 'rubygems'
 require 'rake'
+require 'rake/clean'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
 
 spec = Gem::Specification.new do |s|
   s.name = "aws_onchange"
@@ -9,7 +14,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = "https://github.com/supernini/aws_onchange"
   s.platform = Gem::Platform::RUBY
   s.summary = "Check easily change on models, and run action"
-  s.files = PKG_FILES.FileList[
+  s.files = FileList[
 								'[a-zA-Z]*',
 							  'lib/**/*']
   s.require_path = "lib"
