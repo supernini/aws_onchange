@@ -18,14 +18,15 @@ module ActiveRecord
 		
     private
 		def aws_check_create
-			if self.aws_onchange_oncreate==true
-				self.send(self.aws_onchange_method)
+			if self.respond_to?('aws_onchange_oncreate')
+				if self.aws_onchange_oncreate==true
+					self.send(self.aws_onchange_method)
+				end
 			end
 		end
 		
 		def aws_check_each_field
 			if self.respond_to?('aws_onchange_field')
-			puts self.aws_onchange_oncreate
 				need_update = false
 				self.aws_onchange_field.each do |item|
           if item!='' and self.changed.include?(item.to_s)
