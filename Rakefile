@@ -8,7 +8,7 @@ require 'rake/gempackagetask'
 
 spec = Gem::Specification.new do |s|
   s.name = "aws_onchange"
-  s.version = "0.0.1"
+  s.version = "1.0.0"
   s.author = "Denis FABIEN"
   s.email = "denis@miseajour.net"
   s.homepage = "https://github.com/supernini/aws_onchange"
