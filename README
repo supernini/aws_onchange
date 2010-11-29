@@ -13,7 +13,7 @@ Example
 
 #each time, field1 and field3 are change or created, update_action is called
 class MyModels < ActiveRecord::Base  
-  my_cache_update :checked_field => [:field1, :field3], :method => :update_action, :oncreate => true
+  aws_onchange :checked_field => [:field1, :field3], :method => :update_action, :oncreate => true
   
   def update_action 
     #action to do
