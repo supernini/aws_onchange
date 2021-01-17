@@ -1,5 +1,7 @@
 AwsOnchange
 ===========
+v 2.0 - Janvier 2021 ... time fly
+Update for rails 6
 
 v 1.0 - November 2010
 Add-on to use check easily change on some model, and running action
@@ -12,11 +14,10 @@ Example
 =======
 
 #each time, field1 and field3 are change or created, update_action is called
-class MyModels < ActiveRecord::Base  
+class MyModels < ActiveRecord::Base
   aws_onchange :checked_field => [:field1, :field3], :method => :update_action, :oncreate => true
-  
-  def update_action 
+
+  def update_action
     #action to do
   end
 end
-
