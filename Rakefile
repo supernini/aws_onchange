@@ -1,28 +1,27 @@
-require 'rubygems'
-require 'rake'
-require 'rake/clean'
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+end
+
+require 'rdoc/task'
+
+RDoc::Task.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'AwsOnchange'
+  rdoc.options << '--line-numbers'
+  rdoc.rdoc_files.include('README.md')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+require 'bundler/gem_tasks'
+
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
 
-spec = Gem::Specification.new do |s|
-  s.name = "aws_onchange"
-  s.version = "1.0.3"
-  s.author = "Denis FABIEN"
-  s.email = "denis@miseajour.net"
-  s.homepage = "https://github.com/supernini/aws_onchange"
-  s.platform = Gem::Platform::RUBY
-  s.summary = "Check easily change on models, and run action"
-  s.files = FileList[
-								'[a-zA-Z]*',
-							  'lib/**/*']
-  s.require_path = "lib"
-  s.has_rdoc = false
-  s.extra_rdoc_files = ["README"]
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
 end
 
-desc 'Turn this plugin into a gem.'
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
-end
+task default: :test
